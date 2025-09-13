@@ -1,0 +1,98 @@
+[
+  {
+    "label": "Gmail - Temas Bilişim",
+    "email": "temasbilisim34@gmail.com",
+    "password": "Atmaca@5353",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Musebihhane",
+    "email": "musebihhane@gmail.com",
+    "password": "05325226775",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Mehmetartof01",
+    "email": "mehmetartof01@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Mehmetartof02",
+    "email": "mehmetartof02@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Mehmetartof03",
+    "email": "mehmetartof03@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Sarimemo000",
+    "email": "sarimemo000@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Dayi223453",
+    "email": "dayi223453@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Teamey9",
+    "email": "teamey9@gmail.com",
+    "password": "Atmaca@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Teamey10",
+    "email": "teamey10@gmail.com",
+    "password": "05325226775",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Mehmetartof",
+    "email": "mehmetartof@gmail.com",
+    "password": "05325226775",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Teamey4",
+    "email": "teamey4@gmail.com",
+    "password": "liseli@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  },
+  {
+    "label": "Gmail - Teamey8",
+    "email": "teamey8@gmail.com",
+    "password": "liseli@53",
+    "provider": "google",
+    "enabled": true,
+    "auth_overrides": {}
+  }
+]
