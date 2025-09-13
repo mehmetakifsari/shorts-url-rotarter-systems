@@ -1,0 +1,17 @@
+[2025-08-29 02:24:37] Uygulama açıldı. 24 URL yüklendi.
+[2025-08-29 02:24:43] Görev başladı. Grup: Tümü | 24 URL
+[2025-08-29 02:24:43] Çıkış IP: 31.57.77.214
+[2025-08-29 02:25:40] Uygulama açıldı. 24 URL yüklendi.
+[2025-08-29 02:26:01] Görev başladı. Grup: Tümü | 24 URL
+[2025-08-29 02:26:02] Çıkış IP: 31.57.77.214
+[2025-08-29 02:26:05] Chrome başlatıldı.
+[2025-08-29 02:26:05] Çalıştırılıyor: https://www.youtube.com/watch?v=Ra3TNhiaeMc (5 dk)
+[2025-08-29 02:26:05] Açılıyor: https://www.youtube.com/watch?v=Ra3TNhiaeMc — 5 dk
+[2025-08-29 02:26:05] URL açılıyor: https://www.youtube.com/watch?v=Ra3TNhiaeMc
+[2025-08-29 02:26:51] Açıldı: https://www.youtube.com/watch?v=Ra3TNhiaeMc&themeRefresh=1
+[2025-08-29 02:29:21] Durduruluyor…
+[2025-08-29 02:29:24] Tamamlandı (URL): https://www.youtube.com/watch?v=Ra3TNhiaeMc — Durum: OK — IP: 31.57.77.214
+[2025-08-29 02:29:29] Chrome kapatıldı.
+[2025-08-29 02:29:29] Görev tamamlandı; mail hazırlanıyor…
+[2025-08-29 02:29:32] SMTP: Bildirim maili gönderildi.
+[2025-08-29 02:29:32] Tamamlandı.
