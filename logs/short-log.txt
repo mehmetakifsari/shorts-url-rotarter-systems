@@ -1384,3 +1384,21 @@ bağlantı bağlanılan ana bilgisayar yanıt vermediğinden bir bağlantı kuru
 [2025-09-14 00:13:38] SMTP: Bildirim maili gönderildi.
 [2025-09-14 00:31:18] Uygulama açıldı. 37 URL yüklendi.
 [2025-09-14 00:31:21] Uygulama kapanıyor.
+[2025-09-14 00:41:23] Uygulama açıldı. 37 URL yüklendi.
+[2025-09-14 00:42:11] Hesap seçildi: temasbilisim34@gmail.com
+[2025-09-14 00:42:11] Görev başladı. Grup: Tümü | 37 URL | Kullanılan mail: temasbilisim34@gmail.com
+[2025-09-14 00:42:17] Chrome başlatılıyor (deneme 1) profil: C:\Users\Administrator\Documents\GitHub\shorts-url-rotarter-systems\profiles\temasbilisim34_gmail.com
+[2025-09-14 00:42:30] Driver: UC | BrowserVersion: 140.0.7339.128
+[2025-09-14 00:42:31] Login kapısı: START_AFTER_LOGIN=soft, bekleme=90s
+[2025-09-14 00:42:57] Google giriş başlıyor: temasbilisim34@gmail.com (ayrı sekme)
+[2025-09-14 00:43:37] Google giriş başarılı (YouTube avatar bulundu).
+[2025-09-14 00:43:39] Çıkış IP: 31.57.77.214
+[2025-09-14 00:43:39] Açılıyor: https://www.youtube.com/shorts/R5V_UBy0Ii4 — 1 dk
+[2025-09-14 00:43:39] URL açılıyor: https://www.youtube.com/shorts/R5V_UBy0Ii4
+[2025-09-14 00:43:55] PLAY_VIDEOS=False: Sadece URL açılacak, oynatma zorlanmayacak.
+[2025-09-14 00:44:22] Durdurma talebi gönderildi.
+[2025-09-14 00:44:23] Tamamlandı (URL): https://www.youtube.com/shorts/R5V_UBy0Ii4 — OK — IP: 31.57.77.214
+[2025-09-14 00:44:23] Tamamlandı.
+[2025-09-14 00:44:23] Chrome kapatıldı.
+[2025-09-14 00:44:23] Görev tamamlandı; mail hazırlanıyor…
+[2025-09-14 00:44:25] SMTP: Bildirim maili gönderildi.

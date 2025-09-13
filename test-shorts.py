@@ -41,7 +41,8 @@ from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QListWidget,
     QPushButton, QLabel, QSpinBox, QLineEdit, QListWidgetItem, QToolBar,
     QProgressBar, QMessageBox, QDialog, QDialogButtonBox, QFormLayout,
-    QTimeEdit, QComboBox, QTextEdit, QListWidgetItem as QLI, QCheckBox
+    QTimeEdit, QComboBox, QTextEdit, QListWidgetItem as QLI, QCheckBox,
+    QFrame  # ← eklendi
 )
 
 import requests
@@ -260,8 +261,10 @@ class RotatorWorker(threading.Thread):
         self.signals = signals
         self._stop = threading.Event()
         self.results = []
+        # abort bilgileri
         self.abort_reason = None
         self.abort_details = ""
+        # hesap
         self.login_email = login_email
         self.login_password = login_password
         prof = re.sub(r"[^a-zA-Z0-9_.-]+", "_", self.login_email or "default")
@@ -599,14 +602,49 @@ class MainWindow(QMainWindow):
         top.addWidget(self.in_active_group, 0)
         root.addLayout(top)
 
-        # Genel süre + Genel URL tek satır (yan yana)
-        overall = QHBoxLayout()
+        # --- Ayrım çizgisi (toolbar/top ile panel arasında) ---
+        hr1 = QFrame()
+        hr1.setFrameShape(QFrame.HLine)
+        hr1.setFrameShadow(QFrame.Sunken)
+        root.addWidget(hr1)
+
+        # --- Panel: Genel süre + Genel URL (tablo hissi + dikey çizgi) ---
+        metricsPanel = QFrame()
+        metricsPanel.setObjectName("metricsPanel")
+        metricsPanel.setFrameShape(QFrame.StyledPanel)
+        metricsPanel.setFrameShadow(QFrame.Raised)
+        metricsPanel.setStyleSheet("""
+        QFrame#metricsPanel {
+            border: 1px solid #555;
+            border-radius: 6px;
+            padding: 6px 10px;
+        }
+        """)
+        metrics = QHBoxLayout(metricsPanel)
+        metrics.setContentsMargins(10, 6, 10, 6)
+        metrics.setSpacing(12)
+
         self.lbl_overall = QLabel("Genel süre: 0/0 dk — %0")
         self.lbl_overall_count = QLabel("Genel URL: 0/0 — %0")
-        overall.addWidget(self.lbl_overall, 1); overall.addStretch(1); overall.addWidget(self.lbl_overall_count, 1)
-        root.addLayout(overall)
+
+        vline = QFrame()
+        vline.setFrameShape(QFrame.VLine)
+        vline.setFrameShadow(QFrame.Sunken)
+
+        metrics.addWidget(self.lbl_overall, 1)
+        metrics.addWidget(vline, 0)
+        metrics.addWidget(self.lbl_overall_count, 1)
+        root.addWidget(metricsPanel)
+
+        # --- Panel altına da ince bir çizgi (opsiyonel) ---
+        hr2 = QFrame()
+        hr2.setFrameShape(QFrame.HLine)
+        hr2.setFrameShadow(QFrame.Plain)
+        root.addWidget(hr2)
 
         self.listw=QListWidget(); root.addWidget(self.listw,3)
+
+        # Alt giriş barı
         bar=QHBoxLayout(); self.in_url=QLineEdit(); self.in_url.setPlaceholderText("URL (örn: https://www.youtube.com/shorts/...)")
         self.in_min=QSpinBox(); self.in_min.setRange(1,180); self.in_min.setValue(1)
         self.in_group=QLineEdit(); self.in_group.setPlaceholderText("Grup (örn. Gece)")
@@ -617,6 +655,7 @@ class MainWindow(QMainWindow):
         self.log=QTextEdit(); self.log.setReadOnly(True); self.log.setMinimumHeight(220); root.addWidget(self.log,2)
         self.setCentralWidget(central)
 
+        # Bağlantılar
         btn_add.clicked.connect(self.add_url); btn_del.clicked.connect(self.delete_selected); self.in_url.returnPressed.connect(self.add_url)
         self.btn_save.clicked.connect(self._save_click); self.btn_load.clicked.connect(self.load_list)
         self.btn_start.clicked.connect(lambda: self.start_group_now(self.in_active_group.text().strip()))
@@ -662,7 +701,6 @@ class MainWindow(QMainWindow):
         out=[]
         for i in range(self.listw.count()):
             it=self.listw.item(i); url,mins=it.data(Qt.UserRole) or (it.text(),1); grp=(it.data(Qt.UserRole+1) or "").strip()
-        #   Grup boşsa tümü, değilse tam eşleşenler
             if (not group) or (grp==group): out.append((url, int(mins)))
         return out
 

@@ -1,0 +1,41 @@
+0:00:53 Tab4 FinishNav40
+0:00:53 Tab4 StartNav41 #google #renderer-script #auto_subframe
+0:00:53 Tab4 FinishNav41
+0:00:53 Tab4 StartNav42 #typed
+0:00:54 Tab4 PageLoad
+0:00:54 PasswordProtection.Gaia.HashedPasswordSaved
+0:00:54 Tab4 PageLoad
+0:00:55 Memory Pressure: Critical
+0:00:57 Tab4 FinishNav42
+0:01:00 Memory Pressure: Moderate
+0:01:03 Tab4 StartNav43 #renderer-script #auto_subframe
+0:01:03 Tab4 FinishNav43
+0:01:03 Tab4 PageLoad
+0:01:03 Tab4 StartNav44 #renderer-script #auto_subframe
+0:01:03 Tab4 FinishNav44
+0:01:03 Tab4 PageLoad
+0:01:05 Memory Pressure: Critical
+0:01:07 Tab4 PageLoad
+0:01:09 Browser1 Close Tab4 at 1
+0:01:10 Memory Pressure: Moderate
+0:01:11 Tab1 StartNav45 #typed
+0:01:11 Tab1 FinishNav45
+0:01:15 Memory Pressure: Critical
+0:01:20 Tab1 StartNav46 #renderer-script #auto_subframe
+0:01:20 Tab1 FinishNav46
+0:01:20 Tab1 PageLoad
+0:01:20 Memory Pressure: Critical
+0:01:21 Tab1 StartNav47 #renderer-script #auto_subframe
+0:01:21 Tab1 FinishNav47
+0:01:21 Tab1 PageLoad
+0:01:23 Tab1 PageLoad
+0:01:25 Memory Pressure: Critical
+0:01:30 Memory Pressure: Critical
+0:01:30 Tab1 StartNav48 #renderer-script #auto_subframe
+0:01:31 Tab1 FinishNav48
+0:01:32 Tab1 PageLoad
+0:01:35 Memory Pressure: Critical
+0:01:40 Memory Pressure: Critical
+0:01:44 TextSelectionChanged
+0:01:45 Memory Pressure: Critical
+0:01:50 Memory Pressure: Critical
