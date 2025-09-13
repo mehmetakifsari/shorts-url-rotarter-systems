@@ -1382,3 +1382,5 @@ bağlantı bağlanılan ana bilgisayar yanıt vermediğinden bir bağlantı kuru
 [2025-09-14 00:13:36] Chrome kapatıldı.
 [2025-09-14 00:13:36] Görev tamamlandı; mail hazırlanıyor…
 [2025-09-14 00:13:38] SMTP: Bildirim maili gönderildi.
+[2025-09-14 00:31:18] Uygulama açıldı. 37 URL yüklendi.
+[2025-09-14 00:31:21] Uygulama kapanıyor.
