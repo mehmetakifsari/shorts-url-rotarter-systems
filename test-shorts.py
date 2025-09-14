@@ -1,4 +1,3 @@
-# test-shorts.py
 # -*- coding: utf-8 -*-
 import os, sys, time, json, threading, smtplib, ssl, re, shutil, glob, tempfile, subprocess
 from dataclasses import dataclass, asdict, field
@@ -123,6 +122,98 @@ def send_smtp_mail(subject: str, html: str):
         return True, ""
     except Exception as e:
         return False, str(e)
+
+# === HTML Mail Template (Header + Footer sabit, satırlar dinamik) ===
+MAIL_TEMPLATE = r"""<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{TITLE}}</title>
+  <style>
+    table { border-collapse: collapse; }
+    .container { max-width: 900px; margin: 0 auto; }
+    @media (max-width: 600px) {
+      .wrap { padding: 12px !important; }
+      .card { border-radius: 10px !important; }
+      .thead th, .row td { font-size: 13px !important; padding: 8px !important; }
+      .title { font-size: 18px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#f7f8fa;font-family:Segoe UI,Roboto,Arial,sans-serif;">
+  <div class="wrap" style="padding:24px;">
+    <table class="container card" width="100%" cellpadding="0" cellspacing="0" role="presentation"
+           style="background:#ffffff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06);overflow:hidden;">
+      <tr>
+        <td style="background:linear-gradient(135deg,#e50914,#c611e0);color:#ffffff;padding:20px 24px;">
+          <h2 class="title" style="margin:0;font-weight:700;">{{TITLE}}</h2>
+          <div style="opacity:.9;font-size:13px;margin-top:6px;">{{GENERATED_AT}}</div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="wrap" style="padding:18px 20px;">
+          <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;">
+            <thead class="thead">
+              <tr>
+                <th align="left"   style="padding:10px;border-bottom:2px solid #111111;font-size:14px;">URL</th>
+                <th align="center" style="padding:10px;border-bottom:2px solid #111111;font-size:14px;">Tarayıcı</th>
+                <th align="right"  style="padding:10px;border-bottom:2px solid #111111;font-size:14px;">Süre (dk)</th>
+                <th align="center" style="padding:10px;border-bottom:2px solid #111111;font-size:14px;">Durum</th>
+                <th align="center" style="padding:10px;border-bottom:2px solid #111111;font-size:14px;">IP</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ROWS}}
+            </tbody>
+          </table>
+
+          <div style="margin-top:16px;font-size:12px;color:#666666;">
+            Powered by <b>Revenge ❤️</b>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>"""
+
+def render_mail_html(title: str, rows_html: str, generated_at: Optional[str] = None) -> str:
+    if not generated_at:
+        generated_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    html = MAIL_TEMPLATE.replace("{{TITLE}}", title)\
+                        .replace("{{GENERATED_AT}}", generated_at)\
+                        .replace("{{ROWS}}", rows_html)
+    return html
+
+def build_rows_html(results: List[Dict[str, Any]], browser_label: str = "Chrome (UC)") -> str:
+    """
+    results: [{"url": "...", "minutes": int, "status": "OK", "ip": "..."}]
+    """
+    out = []
+    for r in results:
+        url = r.get("url", "")
+        minutes = int(r.get("minutes", 0) or 0)
+        status = r.get("status", "OK")
+        ip = r.get("ip", "-")
+        # Emoji ile statü
+        status_cell = f"✅ {status}" if str(status).upper() == "OK" else f"❌ {status}"
+        out.append(
+            "<tr class=\"row\">"
+            f"<td style=\"padding:8px 10px;border-bottom:1px solid #eeeeee;word-break:break-all;\">{url}</td>"
+            f"<td align=\"center\" style=\"padding:8px 10px;border-bottom:1px solid #eeeeee;\">{browser_label}</td>"
+            f"<td align=\"right\"  style=\"padding:8px 10px;border-bottom:1px solid #eeeeee;\">{minutes}</td>"
+            f"<td align=\"center\" style=\"padding:8px 10px;border-bottom:1px solid #eeeeee;\">{status_cell}</td>"
+            f"<td align=\"center\" style=\"padding:8px 10px;border-bottom:1px solid #eeeeee;\">{ip}</td>"
+            "</tr>"
+        )
+    return "\n".join(out) if out else (
+        "<tr class=\"row\">"
+        "<td colspan=\"5\" align=\"center\" "
+        "style=\"padding:12px;border-bottom:1px solid #eeeeee;color:#666;\">Kayıt yok</td>"
+        "</tr>"
+    )
 
 def detect_chrome_path_and_major() -> Tuple[Optional[str], Optional[int]]:
     candidates = [
@@ -711,11 +802,12 @@ class MainWindow(QMainWindow):
         log_append(self.log,f"Hesap seçildi: {acc.email}"); return True
 
     def _build_mail_html(self, results):
-        rows=[]
-        for r in results:
-            rows.append(f"<tr><td>{r['url']}</td><td align='right'>{int(r['minutes'])}</td><td>{r.get('ip','-')}</td><td><b>{r['status']}</b></td></tr>")
-        ts=time.strftime("%Y-%m-%d %H:%M:%S")
-        return f"<h3>Görev Tamamlandı</h3><p><b>Kullanılan mail:</b> {self.selected_email or '-'}</p><table border='1' cellspacing='0' cellpadding='6' style='border-collapse:collapse;width:100%'><tr><th>URL</th><th>Süre</th><th>IP</th><th>Durum</th></tr>{''.join(rows)}</table><p style='color:#666'>Zaman: {ts}</p>"
+        """
+        Yeni header/footer şablonu ile sonuçları tablo halinde gönderir.
+        """
+        rows_html = build_rows_html(results, browser_label="Chrome (UC)")
+        title = "[URL Rotator] Görev Tamamlandı"
+        return render_mail_html(title, rows_html)
 
     def start_group_now(self, group: str, via_scheduler: bool=False):
         if self.worker is not None:
@@ -761,7 +853,15 @@ class MainWindow(QMainWindow):
 
         if abort_reason == '2FA_DETECTED':
             subject = "[URL Rotator] İşlem Başarısız — 2FA aktif"
-            html = f"<h3>İşlem Başarısız</h3><p><b>Kullanılan mail:</b> {self.selected_email or '-'}</p><p>2 Adımlı Doğrulama (2FA) tespit edildiği için giriş tamamlanamadı. Bu hesapla otomatik giriş mümkün değil.</p><p>Detay: {abort_details}</p>"
+            # 2FA durumunu da aynı şablon ile tek satır olarak gönderelim
+            fail_row = [{
+                "url": f"Kullanılan mail: {self.selected_email or '-'}",
+                "minutes": 0,
+                "status": "2FA tespit edildi",
+                "ip": "-"
+            }]
+            rows_html = build_rows_html(fail_row, browser_label="Chrome (UC)")
+            html = render_mail_html(subject, rows_html)
         else:
             subject = "[URL Rotator] Görev Tamamlandı"
             html = self._build_mail_html(results)
