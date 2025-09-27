@@ -1,0 +1,157 @@
+[2025-09-27 12:36:09] Uygulama açıldı. 0 URL yüklendi.
+[2025-09-27 12:37:03] Uygulama kapanıyor.
+[2025-09-27 12:37:39] Uygulama açıldı. 0 URL yüklendi.
+[2025-09-27 12:38:31] Liste kaydedildi.
+[2025-09-27 12:38:31] URL eklendi: https://www.youtube.com/watch?v=Ra3TNhiaeMc [5 dk] {Gece}
+[2025-09-27 12:38:33] Liste kaydedildi.
+[2025-09-27 12:40:31] Uygulama kapanıyor.
+[2025-09-27 12:40:37] Uygulama açıldı. 37 URL yüklendi.
+[2025-09-27 12:40:42] Hesap seçildi: temasbilisim34@gmail.com
+[2025-09-27 12:40:42] Görev başladı. Grup: Tümü | 37 URL | Kullanılan mail: temasbilisim34@gmail.com
+[2025-09-27 12:40:47] Chrome başlatılıyor (deneme 1) profil: C:\Users\Administrator\Documents\GitHub\shorts-url-rotarter-systems\profiles\temasbilisim34_gmail.com
+[2025-09-27 12:40:57] Driver: UC | BrowserVersion: 140.0.7339.208
+[2025-09-27 12:40:58] Login kapısı: START_AFTER_LOGIN=soft, bekleme=90s
+[2025-09-27 12:41:11] Profil zaten girişli görünüyor (gate ok).
+[2025-09-27 12:41:12] Çıkış IP: 31.57.77.214
+[2025-09-27 12:41:12] Açılıyor: https://www.youtube.com/shorts/R5V_UBy0Ii4 — 1 dk
+[2025-09-27 12:41:12] URL açılıyor: https://www.youtube.com/shorts/R5V_UBy0Ii4
+[2025-09-27 12:41:23] Oynatma: video.play() (muted).
+[2025-09-27 12:42:23] Tamamlandı (URL): https://www.youtube.com/shorts/R5V_UBy0Ii4 — OK — IP: 31.57.77.214
+[2025-09-27 12:42:25] Çıkış IP: 31.57.77.214
+[2025-09-27 12:42:25] Açılıyor: https://www.youtube.com/shorts/fMOlx_iyH20 — 1 dk
+[2025-09-27 12:42:25] URL açılıyor: https://www.youtube.com/shorts/fMOlx_iyH20
+[2025-09-27 12:42:37] Oynatma: video.play() (muted).
+[2025-09-27 12:43:37] Tamamlandı (URL): https://www.youtube.com/shorts/fMOlx_iyH20 — OK — IP: 31.57.77.214
+[2025-09-27 12:43:38] Çıkış IP: 31.57.77.214
+[2025-09-27 12:43:38] Açılıyor: https://www.youtube.com/shorts/z3ccSQevpaI — 1 dk
+[2025-09-27 12:43:38] URL açılıyor: https://www.youtube.com/shorts/z3ccSQevpaI
+[2025-09-27 12:43:49] Oynatma: video.play() (muted).
+[2025-09-27 12:44:49] Tamamlandı (URL): https://www.youtube.com/shorts/z3ccSQevpaI — OK — IP: 31.57.77.214
+[2025-09-27 12:44:50] Çıkış IP: 31.57.77.214
+[2025-09-27 12:44:50] Açılıyor: https://www.youtube.com/shorts/9gVzxdaTVp0 — 1 dk
+[2025-09-27 12:44:50] URL açılıyor: https://www.youtube.com/shorts/9gVzxdaTVp0
+[2025-09-27 12:45:02] Oynatma: video.play() (muted).
+[2025-09-27 12:45:58] Durdurma talebi gönderildi.
+[2025-09-27 12:45:59] Tamamlandı (URL): https://www.youtube.com/shorts/9gVzxdaTVp0 — OK — IP: 31.57.77.214
+[2025-09-27 12:45:59] Tamamlandı.
+[2025-09-27 12:45:59] Chrome kapatıldı.
+[2025-09-27 12:45:59] Görev tamamlandı; mail hazırlanıyor…
+[2025-09-27 12:46:00] SMTP: Bildirim maili gönderildi.
+[2025-09-27 12:46:19] Uygulama kapanıyor.
+[2025-09-27 12:46:27] Uygulama açıldı. 24 URL yüklendi.
+[2025-09-27 12:46:34] Hesap seçildi: temasbilisim34@gmail.com
+[2025-09-27 12:46:34] Görev başladı. Grup: Tümü | 24 URL | Kullanılan mail: temasbilisim34@gmail.com
+[2025-09-27 12:46:40] Chrome başlatılıyor (deneme 1) profil: C:\Users\Administrator\Documents\GitHub\shorts-url-rotarter-systems\profiles\temasbilisim34_gmail.com
+[2025-09-27 12:46:50] Driver: UC | BrowserVersion: 140.0.7339.208
+[2025-09-27 12:46:50] Login kapısı: START_AFTER_LOGIN=soft, bekleme=90s
+[2025-09-27 12:47:03] Profil zaten girişli görünüyor (gate ok).
+[2025-09-27 12:47:04] Çıkış IP: 31.57.77.214
+[2025-09-27 12:47:04] Açılıyor: https://www.youtube.com/watch?v=Ra3TNhiaeMc — 5 dk
+[2025-09-27 12:47:04] URL açılıyor: https://www.youtube.com/watch?v=Ra3TNhiaeMc
+[2025-09-27 12:47:17] Oynatma: video.play() (muted).
+[2025-09-27 12:52:18] Tamamlandı (URL): https://www.youtube.com/watch?v=Ra3TNhiaeMc — OK — IP: 31.57.77.214
+[2025-09-27 12:52:18] Çıkış IP: 31.57.77.214
+[2025-09-27 12:52:18] Açılıyor: https://www.youtube.com/watch?v=4HweQNVhSvU — 5 dk
+[2025-09-27 12:52:18] URL açılıyor: https://www.youtube.com/watch?v=4HweQNVhSvU
+[2025-09-27 12:52:38] Oynatma: video.play() (muted).
+[2025-09-27 12:57:38] Tamamlandı (URL): https://www.youtube.com/watch?v=4HweQNVhSvU — OK — IP: 31.57.77.214
+[2025-09-27 12:57:39] Çıkış IP: 31.57.77.214
+[2025-09-27 12:57:39] Açılıyor: https://www.youtube.com/watch?v=MKkzeAQ-1rU — 5 dk
+[2025-09-27 12:57:39] URL açılıyor: https://www.youtube.com/watch?v=MKkzeAQ-1rU
+[2025-09-27 12:57:47] Oynatma: video.play() (muted).
+[2025-09-27 13:02:48] Tamamlandı (URL): https://www.youtube.com/watch?v=MKkzeAQ-1rU — OK — IP: 31.57.77.214
+[2025-09-27 13:02:49] Çıkış IP: 31.57.77.214
+[2025-09-27 13:02:49] Açılıyor: https://www.youtube.com/watch?v=OL8xnw9nIzU — 5 dk
+[2025-09-27 13:02:49] URL açılıyor: https://www.youtube.com/watch?v=OL8xnw9nIzU
+[2025-09-27 13:02:58] Oynatma: video.play() (muted).
+[2025-09-27 13:07:58] Tamamlandı (URL): https://www.youtube.com/watch?v=OL8xnw9nIzU — OK — IP: 31.57.77.214
+[2025-09-27 13:07:59] Çıkış IP: 31.57.77.214
+[2025-09-27 13:07:59] Açılıyor: https://www.youtube.com/watch?v=5LfmBIWHiOE — 5 dk
+[2025-09-27 13:07:59] URL açılıyor: https://www.youtube.com/watch?v=5LfmBIWHiOE
+[2025-09-27 13:08:11] Oynatma: video.play() (muted).
+[2025-09-27 13:13:11] Tamamlandı (URL): https://www.youtube.com/watch?v=5LfmBIWHiOE — OK — IP: 31.57.77.214
+[2025-09-27 13:13:12] Çıkış IP: 31.57.77.214
+[2025-09-27 13:13:12] Açılıyor: https://www.youtube.com/watch?v=OfTiquASSuk — 5 dk
+[2025-09-27 13:13:12] URL açılıyor: https://www.youtube.com/watch?v=OfTiquASSuk
+[2025-09-27 13:13:20] Oynatma: video.play() (muted).
+[2025-09-27 13:18:20] Tamamlandı (URL): https://www.youtube.com/watch?v=OfTiquASSuk — OK — IP: 31.57.77.214
+[2025-09-27 13:18:21] Çıkış IP: 31.57.77.214
+[2025-09-27 13:18:21] Açılıyor: https://www.youtube.com/watch?v=9TCCW7wbRnU — 5 dk
+[2025-09-27 13:18:21] URL açılıyor: https://www.youtube.com/watch?v=9TCCW7wbRnU
+[2025-09-27 13:18:32] Oynatma: video.play() (muted).
+[2025-09-27 13:23:32] Tamamlandı (URL): https://www.youtube.com/watch?v=9TCCW7wbRnU — OK — IP: 31.57.77.214
+[2025-09-27 13:23:33] Çıkış IP: 31.57.77.214
+[2025-09-27 13:23:33] Açılıyor: https://www.youtube.com/watch?v=ILRbEu9kz-E — 5 dk
+[2025-09-27 13:23:33] URL açılıyor: https://www.youtube.com/watch?v=ILRbEu9kz-E
+[2025-09-27 13:23:43] Oynatma: video.play() (muted).
+[2025-09-27 13:28:43] Tamamlandı (URL): https://www.youtube.com/watch?v=ILRbEu9kz-E — OK — IP: 31.57.77.214
+[2025-09-27 13:28:44] Çıkış IP: 31.57.77.214
+[2025-09-27 13:28:44] Açılıyor: https://www.youtube.com/watch?v=qktPDXI8U7s — 5 dk
+[2025-09-27 13:28:44] URL açılıyor: https://www.youtube.com/watch?v=qktPDXI8U7s
+[2025-09-27 13:28:55] Oynatma: video.play() (muted).
+[2025-09-27 13:33:55] Tamamlandı (URL): https://www.youtube.com/watch?v=qktPDXI8U7s — OK — IP: 31.57.77.214
+[2025-09-27 13:33:56] Çıkış IP: 31.57.77.214
+[2025-09-27 13:33:56] Açılıyor: https://www.youtube.com/watch?v=VCL53jc_XWA — 5 dk
+[2025-09-27 13:33:56] URL açılıyor: https://www.youtube.com/watch?v=VCL53jc_XWA
+[2025-09-27 13:34:05] Oynatma: video.play() (muted).
+[2025-09-27 13:39:05] Tamamlandı (URL): https://www.youtube.com/watch?v=VCL53jc_XWA — OK — IP: 31.57.77.214
+[2025-09-27 13:39:06] Çıkış IP: 31.57.77.214
+[2025-09-27 13:39:06] Açılıyor: https://www.youtube.com/watch?v=TdgZVLtoGLU — 5 dk
+[2025-09-27 13:39:06] URL açılıyor: https://www.youtube.com/watch?v=TdgZVLtoGLU
+[2025-09-27 13:39:18] Oynatma: video.play() (muted).
+[2025-09-27 13:44:18] Tamamlandı (URL): https://www.youtube.com/watch?v=TdgZVLtoGLU — OK — IP: 31.57.77.214
+[2025-09-27 13:44:19] Çıkış IP: 31.57.77.214
+[2025-09-27 13:44:19] Açılıyor: https://www.youtube.com/watch?v=jii90HM1B9w — 5 dk
+[2025-09-27 13:44:19] URL açılıyor: https://www.youtube.com/watch?v=jii90HM1B9w
+[2025-09-27 13:44:34] Oynatma: video.play() (muted).
+[2025-09-27 13:49:34] Tamamlandı (URL): https://www.youtube.com/watch?v=jii90HM1B9w — OK — IP: 31.57.77.214
+[2025-09-27 13:49:35] Çıkış IP: 31.57.77.214
+[2025-09-27 13:49:35] Açılıyor: https://www.youtube.com/watch?v=L2cIVHFHodQ — 5 dk
+[2025-09-27 13:49:35] URL açılıyor: https://www.youtube.com/watch?v=L2cIVHFHodQ
+[2025-09-27 13:49:44] Oynatma: video.play() (muted).
+[2025-09-27 13:54:44] Tamamlandı (URL): https://www.youtube.com/watch?v=L2cIVHFHodQ — OK — IP: 31.57.77.214
+[2025-09-27 13:54:45] Çıkış IP: 31.57.77.214
+[2025-09-27 13:54:45] Açılıyor: https://www.youtube.com/watch?v=vd9WATpHpeI — 5 dk
+[2025-09-27 13:54:45] URL açılıyor: https://www.youtube.com/watch?v=vd9WATpHpeI
+[2025-09-27 13:54:56] Oynatma: video.play() (muted).
+[2025-09-27 13:59:57] Tamamlandı (URL): https://www.youtube.com/watch?v=vd9WATpHpeI — OK — IP: 31.57.77.214
+[2025-09-27 13:59:58] Çıkış IP: 31.57.77.214
+[2025-09-27 13:59:58] Açılıyor: https://www.youtube.com/watch?v=OVybMJG_wts — 5 dk
+[2025-09-27 13:59:58] URL açılıyor: https://www.youtube.com/watch?v=OVybMJG_wts
+[2025-09-27 14:00:08] Oynatma: video.play() (muted).
+[2025-09-27 14:05:08] Tamamlandı (URL): https://www.youtube.com/watch?v=OVybMJG_wts — OK — IP: 31.57.77.214
+[2025-09-27 14:05:09] Çıkış IP: 31.57.77.214
+[2025-09-27 14:05:09] Açılıyor: https://www.youtube.com/watch?v=9uv_NCPkRdI — 5 dk
+[2025-09-27 14:05:09] URL açılıyor: https://www.youtube.com/watch?v=9uv_NCPkRdI
+[2025-09-27 14:05:21] Oynatma: video.play() (muted).
+[2025-09-27 14:10:21] Tamamlandı (URL): https://www.youtube.com/watch?v=9uv_NCPkRdI — OK — IP: 31.57.77.214
+[2025-09-27 14:10:22] Çıkış IP: 31.57.77.214
+[2025-09-27 14:10:22] Açılıyor: https://www.youtube.com/watch?v=lNOII1b-CPY — 5 dk
+[2025-09-27 14:10:22] URL açılıyor: https://www.youtube.com/watch?v=lNOII1b-CPY
+[2025-09-27 14:10:33] Oynatma: video.play() (muted).
+[2025-09-27 14:15:34] Tamamlandı (URL): https://www.youtube.com/watch?v=lNOII1b-CPY — OK — IP: 31.57.77.214
+[2025-09-27 14:15:35] Çıkış IP: 31.57.77.214
+[2025-09-27 14:15:35] Açılıyor: https://www.youtube.com/watch?v=LqOxfytLc-c — 5 dk
+[2025-09-27 14:15:35] URL açılıyor: https://www.youtube.com/watch?v=LqOxfytLc-c
+[2025-09-27 14:15:44] Oynatma: video.play() (muted).
+[2025-09-27 14:20:45] Tamamlandı (URL): https://www.youtube.com/watch?v=LqOxfytLc-c — OK — IP: 31.57.77.214
+[2025-09-27 14:20:46] Çıkış IP: 31.57.77.214
+[2025-09-27 14:20:46] Açılıyor: https://www.youtube.com/watch?v=4lIOKJyoboc — 5 dk
+[2025-09-27 14:20:46] URL açılıyor: https://www.youtube.com/watch?v=4lIOKJyoboc
+[2025-09-27 14:20:55] Oynatma: video.play() (muted).
+[2025-09-27 14:25:56] Tamamlandı (URL): https://www.youtube.com/watch?v=4lIOKJyoboc — OK — IP: 31.57.77.214
+[2025-09-27 14:25:57] Çıkış IP: 31.57.77.214
+[2025-09-27 14:25:57] Açılıyor: https://www.youtube.com/watch?v=skjAT-pEgEA — 5 dk
+[2025-09-27 14:25:57] URL açılıyor: https://www.youtube.com/watch?v=skjAT-pEgEA
+[2025-09-27 14:26:10] Oynatma: video.play() (muted).
+[2025-09-27 14:31:10] Tamamlandı (URL): https://www.youtube.com/watch?v=skjAT-pEgEA — OK — IP: 31.57.77.214
+[2025-09-27 14:31:12] Çıkış IP: 31.57.77.214
+[2025-09-27 14:31:12] Açılıyor: https://www.youtube.com/watch?v=pyNiy9VL67E — 5 dk
+[2025-09-27 14:31:12] URL açılıyor: https://www.youtube.com/watch?v=pyNiy9VL67E
+[2025-09-27 14:31:30] Oynatma: video.play() (muted).
+[2025-09-27 14:33:40] Durdurma talebi gönderildi.
+[2025-09-27 14:33:40] Tamamlandı (URL): https://www.youtube.com/watch?v=pyNiy9VL67E — OK — IP: 31.57.77.214
+[2025-09-27 14:33:40] Tamamlandı.
+[2025-09-27 14:33:40] Chrome kapatıldı.
+[2025-09-27 14:33:40] Görev tamamlandı; mail hazırlanıyor…
+[2025-09-27 14:33:42] SMTP: Bildirim maili gönderildi.
