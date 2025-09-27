@@ -31,17 +31,23 @@ def _ensure_deps():
 try: _ensure_deps()
 except Exception: pass
 
+# --- Windows Server 2016: tema/DPI uyumluluğu + log susturma (importlardan ÖNCE) ---
+os.environ["QT_ENABLE_HIGHDPI_SCALING"] = "0"
+os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "0"
+os.environ["QT_LOGGING_RULES"] = "*.debug=false;qt.qpa.*=false"
 os.environ["QT_OPENGL"] = "software"
 os.environ["QT_QUICK_BACKEND"] = "software"
+# uxtheme çağrılarını by-pass etmek için native yerine Fusion temayı zorla
+os.environ["QT_STYLE_OVERRIDE"] = "Fusion"
 
 from PySide6.QtCore import Qt, Signal, QObject, QTime
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPalette, QColor
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QListWidget,
     QPushButton, QLabel, QSpinBox, QLineEdit, QListWidgetItem, QToolBar,
     QProgressBar, QMessageBox, QDialog, QDialogButtonBox, QFormLayout,
     QTimeEdit, QComboBox, QTextEdit, QListWidgetItem as QLI, QCheckBox,
-    QFrame  # ← eklendi
+    QFrame, QStyleFactory
 )
 
 import requests
@@ -61,6 +67,31 @@ MAIL_ACCOUNTS_FILE = os.path.join(APP_DIR, "mail_accounts.json")
 LOG_DIR = os.path.join(APP_DIR, "logs"); os.makedirs(LOG_DIR, exist_ok=True)
 LOG_FILE = os.path.join(LOG_DIR, "short-log.txt")
 
+# ---- Dark / Light theme helpers ----
+def apply_dark_theme(app):
+    app.setStyle(QStyleFactory.create("Fusion"))
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    palette.setColor(QPalette.WindowText, Qt.white)
+    palette.setColor(QPalette.Base, QColor(35, 35, 35))
+    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    palette.setColor(QPalette.ToolTipBase, Qt.white)
+    palette.setColor(QPalette.ToolTipText, Qt.white)
+    palette.setColor(QPalette.Text, Qt.white)
+    palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    palette.setColor(QPalette.ButtonText, Qt.white)
+    palette.setColor(QPalette.BrightText, Qt.red)
+    palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    palette.setColor(QPalette.HighlightedText, Qt.black)
+    app.setPalette(palette)
+    app.setStyleSheet("QToolTip { color: #fff; background-color: #2a82da; border: 1px solid #fff; }")
+
+def apply_light_theme(app):
+    app.setStyle(QStyleFactory.create("Fusion"))
+    app.setPalette(QPalette())
+    app.setStyleSheet("")
+
 def _ts(): return time.strftime("%Y-%m-%d %H:%M:%S")
 def log_append(widget: Optional[QTextEdit], text: str):
     line = f"[{_ts()}] {text}"
@@ -71,17 +102,22 @@ def log_append(widget: Optional[QTextEdit], text: str):
                 cur.movePosition(cur.Start); cur.movePosition(cur.Down, cur.KeepAnchor, 200)
                 cur.removeSelectedText(); cur.deleteChar()
             widget.append(line)
-    except Exception: pass
+    except Exception:
+        pass
     try:
-        with open(LOG_FILE, "a", encoding="utf-8") as f: f.write(line + "\n")
-    except Exception: pass
+        with open(LOG_FILE, "a", encoding="utf-8", newline="") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
 
 def normalize_youtube_url(u: str) -> str:
     try:
         url = (u or "").strip()
-        if not url: return url
+        if not url:
+            return url
         pr = urlparse(url); host = (pr.netloc or "").lower(); path = pr.path or ""
-        if host.endswith("youtube.com") and "/shorts/" in path: return url
+        if host.endswith("youtube.com") and "/shorts/" in path:
+            return url
         if host.endswith("youtu.be"):
             vid = path.strip("/").split("/")[0] if path else ""
             t = parse_qs(pr.query).get("t", [""])[0]
@@ -104,11 +140,13 @@ def get_public_ip(timeout=5) -> str:
 def load_smtp():
     try:
         with open(SMTP_FILE, "r", encoding="utf-8") as f: return json.load(f)
-    except Exception: return {"enabled": False, "host": "smtp.gmail.com", "port": 465, "user": "", "password": "", "to_addr": "", "use_tls": False, "use_ssl": True}
+    except Exception:
+        return {"enabled": False, "host": "smtp.gmail.com", "port": 465, "user": "", "password": "", "to_addr": "", "use_tls": False, "use_ssl": True}
 
 def send_smtp_mail(subject: str, html: str):
     cfg = load_smtp()
-    if not cfg.get("enabled"): return False, "SMTP disabled"
+    if not cfg.get("enabled"):
+        return False, "SMTP disabled"
     try:
         msg = MIMEText(html, "html", "utf-8"); msg["Subject"]=subject; msg["From"]=cfg["user"]; msg["To"]=cfg["to_addr"]
         if cfg.get("use_ssl", True):
@@ -188,16 +226,12 @@ def render_mail_html(title: str, rows_html: str, generated_at: Optional[str] = N
     return html
 
 def build_rows_html(results: List[Dict[str, Any]], browser_label: str = "Chrome (UC)") -> str:
-    """
-    results: [{"url": "...", "minutes": int, "status": "OK", "ip": "..."}]
-    """
     out = []
     for r in results:
         url = r.get("url", "")
         minutes = int(r.get("minutes", 0) or 0)
         status = r.get("status", "OK")
         ip = r.get("ip", "-")
-        # Emoji ile statü
         status_cell = f"✅ {status}" if str(status).upper() == "OK" else f"❌ {status}"
         out.append(
             "<tr class=\"row\">"
@@ -264,9 +298,13 @@ class ChromeController:
         if not chrome_path: chrome_path = DEFAULT_CHROME_EXE if os.path.exists(DEFAULT_CHROME_EXE) else None
         if not major: major = FALLBACK_VERSION_MAIN
         ua=(f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{major}.0.0.0 Safari/537.36")
-        base_opts=["--no-first-run","--no-default-browser-check","--disable-extensions","--disable-logging","--log-level=3",
-                   "--disable-notifications","--disable-gcm-driver","--disable-background-networking","--disable-renderer-backgrounding",
-                   "--disable-background-timer-throttling","--mute-audio","--window-size=1280,800", f"--user-agent={ua}"]
+        base_opts=[
+            "--no-first-run","--no-default-browser-check","--disable-extensions",
+            "--disable-logging","--log-level=3","--disable-notifications",
+            "--disable-gcm-driver","--disable-background-networking",
+            "--disable-renderer-backgrounding","--disable-background-timer-throttling",
+            "--mute-audio","--window-size=1280,800", f"--user-agent={ua}"
+        ]
         attempts=0; last_err=None; profiles_to_try=[]
         if self.profile_dir:
             os.makedirs(self.profile_dir, exist_ok=True); self._cleanup_profile_locks(self.profile_dir); profiles_to_try.append(self.profile_dir)
@@ -303,9 +341,7 @@ class ChromeController:
             return True
         except Exception: return False
     def _dismiss_overlays(self):
-        try:
-            sels=['button[aria-label*="Kabul"]','button[aria-label*="Accept"]','button[aria-label*="I agree"]','button[aria-label*="Tümünü kabul et"]']
-        except Exception: return
+        sels=['button[aria-label*="Kabul"]','button[aria-label*="Accept"]','button[aria-label*="I agree"]','button[aria-label*="Tümünü kabul et"]']
         for css in sels:
             try:
                 for el in self.chrome.find_elements(By.CSS_SELECTOR, css):
@@ -674,7 +710,9 @@ class MainWindow(QMainWindow):
         self.btn_start=QPushButton("Başlat (Grup)"); self.btn_stop=QPushButton("Durdur")
         self.btn_save=QPushButton("Kaydet"); self.btn_load=QPushButton("Yükle")
         self.btn_sched=QPushButton("Zamanlama…"); self.btn_smtp_test=QPushButton("SMTP Test")
-        for b in (self.btn_start,self.btn_stop,self.btn_save,self.btn_load,self.btn_sched,self.btn_smtp_test): tb.addWidget(b)
+        # Tema toggle (isteğe bağlı)
+        self.btn_theme = QPushButton("🌙 Koyu/Açık")
+        for b in (self.btn_start,self.btn_stop,self.btn_save,self.btn_load,self.btn_sched,self.btn_smtp_test,self.btn_theme): tb.addWidget(b)
         self.addToolBar(tb)
 
         central=QWidget(); root=QVBoxLayout(central)
@@ -693,17 +731,12 @@ class MainWindow(QMainWindow):
         top.addWidget(self.in_active_group, 0)
         root.addLayout(top)
 
-        # --- Ayrım çizgisi (toolbar/top ile panel arasında) ---
-        hr1 = QFrame()
-        hr1.setFrameShape(QFrame.HLine)
-        hr1.setFrameShadow(QFrame.Sunken)
-        root.addWidget(hr1)
+        # --- Ayrım çizgisi ---
+        hr1 = QFrame(); hr1.setFrameShape(QFrame.HLine); hr1.setFrameShadow(QFrame.Sunken); root.addWidget(hr1)
 
         # --- Panel: Genel süre + Genel URL (tablo hissi + dikey çizgi) ---
-        metricsPanel = QFrame()
-        metricsPanel.setObjectName("metricsPanel")
-        metricsPanel.setFrameShape(QFrame.StyledPanel)
-        metricsPanel.setFrameShadow(QFrame.Raised)
+        metricsPanel = QFrame(); metricsPanel.setObjectName("metricsPanel")
+        metricsPanel.setFrameShape(QFrame.StyledPanel); metricsPanel.setFrameShadow(QFrame.Raised)
         metricsPanel.setStyleSheet("""
         QFrame#metricsPanel {
             border: 1px solid #555;
@@ -711,27 +744,16 @@ class MainWindow(QMainWindow):
             padding: 6px 10px;
         }
         """)
-        metrics = QHBoxLayout(metricsPanel)
-        metrics.setContentsMargins(10, 6, 10, 6)
-        metrics.setSpacing(12)
-
+        metrics = QHBoxLayout(metricsPanel); metrics.setContentsMargins(10, 6, 10, 6); metrics.setSpacing(12)
         self.lbl_overall = QLabel("Genel süre: 0/0 dk — %0")
         self.lbl_overall_count = QLabel("Genel URL: 0/0 — %0")
-
-        vline = QFrame()
-        vline.setFrameShape(QFrame.VLine)
-        vline.setFrameShadow(QFrame.Sunken)
-
+        vline = QFrame(); vline.setFrameShape(QFrame.VLine); vline.setFrameShadow(QFrame.Sunken)
         metrics.addWidget(self.lbl_overall, 1)
         metrics.addWidget(vline, 0)
         metrics.addWidget(self.lbl_overall_count, 1)
         root.addWidget(metricsPanel)
 
-        # --- Panel altına da ince bir çizgi (opsiyonel) ---
-        hr2 = QFrame()
-        hr2.setFrameShape(QFrame.HLine)
-        hr2.setFrameShadow(QFrame.Plain)
-        root.addWidget(hr2)
+        hr2 = QFrame(); hr2.setFrameShape(QFrame.HLine); hr2.setFrameShadow(QFrame.Plain); root.addWidget(hr2)
 
         self.listw=QListWidget(); root.addWidget(self.listw,3)
 
@@ -751,8 +773,19 @@ class MainWindow(QMainWindow):
         self.btn_save.clicked.connect(self._save_click); self.btn_load.clicked.connect(self.load_list)
         self.btn_start.clicked.connect(lambda: self.start_group_now(self.in_active_group.text().strip()))
         self.btn_stop.clicked.connect(self.stop_run); self.btn_sched.clicked.connect(self.open_scheduler); self.btn_smtp_test.clicked.connect(self.smtp_test_now)
+        self.btn_theme.clicked.connect(self.toggle_theme)
 
         self.load_list(); log_append(self.log, f"Uygulama açıldı. {self.listw.count()} URL yüklendi.")
+
+    def toggle_theme(self):
+        # Koyu palet mi yüklü diye kaba bir kontrol:
+        is_dark = self.palette().color(QPalette.Window).value() < 100
+        if is_dark:
+            apply_light_theme(QApplication.instance())
+            log_append(self.log, "Tema: Açık")
+        else:
+            apply_dark_theme(QApplication.instance())
+            log_append(self.log, "Tema: Koyu")
 
     def _save_click(self):
         data=[]
@@ -802,9 +835,6 @@ class MainWindow(QMainWindow):
         log_append(self.log,f"Hesap seçildi: {acc.email}"); return True
 
     def _build_mail_html(self, results):
-        """
-        Yeni header/footer şablonu ile sonuçları tablo halinde gönderir.
-        """
         rows_html = build_rows_html(results, browser_label="Chrome (UC)")
         title = "[URL Rotator] Görev Tamamlandı"
         return render_mail_html(title, rows_html)
@@ -853,7 +883,6 @@ class MainWindow(QMainWindow):
 
         if abort_reason == '2FA_DETECTED':
             subject = "[URL Rotator] İşlem Başarısız — 2FA aktif"
-            # 2FA durumunu da aynı şablon ile tek satır olarak gönderelim
             fail_row = [{
                 "url": f"Kullanılan mail: {self.selected_email or '-'}",
                 "minutes": 0,
@@ -866,8 +895,10 @@ class MainWindow(QMainWindow):
             subject = "[URL Rotator] Görev Tamamlandı"
             html = self._build_mail_html(results)
         ok,err=send_smtp_mail(subject, html)
-        if ok: log_append(self.log,"SMTP: Bildirim maili gönderildi."); QMessageBox.information(self,"SMTP","Bildirim maili gönderildi.")
-        else: log_append(self.log,f"SMTP HATA: {err}"); QMessageBox.warning(self,"SMTP",f"Mail gönderilemedi.\nHata: {err}")
+        if ok:
+            log_append(self.log,"SMTP: Bildirim maili gönderildi."); QMessageBox.information(self,"SMTP","Bildirim maili gönderildi.")
+        else:
+            log_append(self.log,f"SMTP HATA: {err}"); QMessageBox.warning(self,"SMTP",f"Mail gönderilemedi.\nHata: {err}")
         self.selected_email=None; self.selected_password=None
 
     def on_status(self,msg:str): self.set_status(msg); log_append(self.log,msg)
@@ -891,9 +922,9 @@ class MainWindow(QMainWindow):
             )
         )
 
-        # Genel URL (adet bazlı)
+        # Genel URL (adet bazlı) — şu anki URL bitmişse +1
         total_urls = getattr(self, "plan_total_urls", 0)
-        done_urls = min(idx, total_urls)  # aktif tamamlanmadıysa idx kadar URL bitmiştir
+        done_urls = min(idx + (1 if elapsed >= total else 0), total_urls)
         url_pct = int(max(0, min(100, (done_urls / max(1, total_urls)) * 100)))
         self.lbl_overall_count.setText(
             "Genel URL: {done}/{tot} — %{p}".format(
@@ -911,6 +942,13 @@ class MainWindow(QMainWindow):
 
 if __name__=="__main__":
     app=QApplication(sys.argv); app.setApplicationName(APP_NAME)
+    try:
+        app.setStyle(QStyleFactory.create("Fusion"))
+    except Exception:
+        pass
+    # Varsayılan olarak koyu tema
+    apply_dark_theme(app)
+
     if os.path.exists(APP_ICON): app.setWindowIcon(QIcon(APP_ICON))
     w=MainWindow()
     if os.path.exists(APP_ICON): w.setWindowIcon(QIcon(APP_ICON))
